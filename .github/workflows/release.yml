@@ -25,3 +25,13 @@ jobs:
           uv lock
           git add uv.lock
           uv run semantic-release -v version
+      
+      - name: Build distribution
+        run: uv build
+        
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
